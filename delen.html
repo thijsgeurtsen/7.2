@@ -60,22 +60,23 @@
   function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
   function randInt(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
 
-  function newQ(){
-    const d = pick(divisors);
+function newQ(){
+  const divisors = [2,3,4,5,6,7,8,9,10];
 
-    // Maak vaak “mooie” quotiënten zoals 30,40,50 (zodat je 450:9 kunt krijgen)
-    let q;
-    const r = Math.random();
-    if(r < 0.55) q = randInt(10, 100);                 // normaal
-    else if(r < 0.85) q = pick([10,20,30,40,50,60,70,80,90,100]); // rond
-    else q = pick([12,15,18,24,25,30,36,45,48,54,60,72,75,80,90]); // “tafels-achtig”
+  const d = divisors[Math.floor(Math.random()*divisors.length)];
 
-    const dividend = d * q;
-    correct = q;
+  // kies een "mooie" uitkomst (tientallen of honderdtallen)
+  const quotients = [10,20,30,40,50,60,70,80,90,100];
+  const q = quotients[Math.floor(Math.random()*quotients.length)];
 
-    questionEl.textContent = `${dividend} : ${d} = ?`;
-    answerEl.value="";
-    answerEl.focus();
+  const dividend = d * q;
+
+  correct = q;
+  questionEl.textContent = `${dividend} : ${d} = ?`;
+  answerEl.value = "";
+  answerEl.focus();
+}
+
   }
 
   function start(){
